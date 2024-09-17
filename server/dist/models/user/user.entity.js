@@ -9,27 +9,38 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Category = void 0;
+exports.User = void 0;
 const typeorm_1 = require("typeorm");
-const product_entity_1 = require("../product/product.entity");
-let Category = class Category {
+let User = class User {
+    EmailToLowerCase() {
+        this.email = this.email.toLocaleLowerCase();
+    }
 };
-exports.Category = Category;
+exports.User = User;
 __decorate([
     (0, typeorm_1.PrimaryGeneratedColumn)({ name: 'ID' }),
     __metadata("design:type", Number)
-], Category.prototype, "id", void 0);
+], User.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'NAME', length: 100, unique: true }),
+    (0, typeorm_1.Column)({ name: 'email', unique: true }),
     __metadata("design:type", String)
-], Category.prototype, "name", void 0);
+], User.prototype, "email", void 0);
 __decorate([
-    (0, typeorm_1.OneToMany)(() => product_entity_1.Product, (product) => product.categoryName, {
-        cascade: true,
-    }),
-    __metadata("design:type", Array)
-], Category.prototype, "products", void 0);
-exports.Category = Category = __decorate([
-    (0, typeorm_1.Entity)('CATEGORY')
-], Category);
-//# sourceMappingURL=category.js.map
+    (0, typeorm_1.Column)({ name: 'NAME' }),
+    __metadata("design:type", String)
+], User.prototype, "name", void 0);
+__decorate([
+    (0, typeorm_1.Column)({ name: 'PASSWORD' }),
+    __metadata("design:type", String)
+], User.prototype, "password", void 0);
+__decorate([
+    (0, typeorm_1.BeforeInsert)(),
+    (0, typeorm_1.BeforeUpdate)(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], User.prototype, "EmailToLowerCase", null);
+exports.User = User = __decorate([
+    (0, typeorm_1.Entity)('USER')
+], User);
+//# sourceMappingURL=user.entity.js.map

@@ -8,7 +8,8 @@ async function bootstrap() {
         origin: true,
         credentials: true,
     });
-    await app.listen(3000);
+    await app.listen(process.env.BACKEND_PORT);
+    console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();
 //# sourceMappingURL=main.js.map

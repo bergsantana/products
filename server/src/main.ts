@@ -7,6 +7,8 @@ async function bootstrap() {
     origin: true, // permitir solicitações de todas as origens
     credentials: true, // permitir solicitações com credenciais
   });
-  await app.listen(3000);
+  await app.listen(process.env.BACKEND_PORT);
+
+  console.log(`Application is running on: ${await app.getUrl()}`);
 }
 bootstrap();

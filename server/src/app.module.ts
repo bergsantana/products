@@ -5,6 +5,10 @@ import { ConfigModule } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { Category } from './models/category/category';
 import { Product } from './models/product/product.entity';
+import { ProductModule } from './domains/product/product.module';
+import { UserModule } from './domains/user/user.module';
+import { User } from './models/user/user.entity';
+import { AuthModule } from './auth/auth.module';
 
 @Module({
   imports: [
@@ -16,9 +20,12 @@ import { Product } from './models/product/product.entity';
       username: process.env.MYSQL_USER,
       password: process.env.MYSQL_PASSWORD,
       database: process.env.MYSQL_DATABASE,
-      entities: [Category, Product],
+      entities: [Category, Product, User],
       synchronize: true,
     }),
+    ProductModule,
+    UserModule,
+    AuthModule
   ],
   controllers: [AppController],
   providers: [AppService],
