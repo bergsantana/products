@@ -1,0 +1,20 @@
+.toast-error path {
+    fill: var(--color-highlight);
+  }
+  
+  .toast-warning path {
+    fill: var(--color-highlight);
+  }
+  
+  .toast-info path {
+    fill: var(--color-secondary);
+  }
+  
+  .toast-success path {
+    fill: var(--color-primary);
+  }
+  
+  .Toastify__toast {
+    border-radius: 0px !important;
+  }
+  

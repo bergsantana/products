@@ -21,7 +21,7 @@ __decorate([
     __metadata("design:type", Number)
 ], Product.prototype, "id", void 0);
 __decorate([
-    (0, typeorm_1.Column)({ name: 'NAME', length: 50 }),
+    (0, typeorm_1.Column)({ name: 'NAME', length: 50, unique: true }),
     __metadata("design:type", String)
 ], Product.prototype, "name", void 0);
 __decorate([

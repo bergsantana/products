@@ -25,7 +25,6 @@ let ProductController = class ProductController {
         return this.productService.create(product);
     }
     findAll(query) {
-        console.log(`controller params`, query.search, query.page);
         return this.productService.findAll(query.search, query.page);
     }
     findOne(id) {

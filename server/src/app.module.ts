@@ -22,6 +22,7 @@ import { AuthModule } from './auth/auth.module';
       database: process.env.MYSQL_DATABASE,
       entities: [Category, Product, User],
       synchronize: true,
+      logging: true
     }),
     ProductModule,
     UserModule,

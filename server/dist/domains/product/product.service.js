@@ -39,33 +39,37 @@ let ProductService = class ProductService {
             });
         return await this.productRepository.save(procutToSave);
     }
-    async findAll(query, page) {
+    async findAll(search, page) {
         const take = 10;
         const skip = take * (page - 1);
-        console.log(`query`, query, page);
-        const [result, total] = await this.productRepository.findAndCount({
-            where: {
-                name: (0, typeorm_2.Like)(`%${query}%`),
-            },
-            order: {
-                name: 'DESC',
-            },
-            take: 10,
-            skip: 0,
-        });
+        const query = this.productRepository.createQueryBuilder('product')
+            .where('product.name LIKE :query', { query: `%${search}%` })
+            .orWhere('product.description LIKE :query', { query: `%${search}%` })
+            .skip(skip)
+            .take(take);
+        const [result, total] = await query.getManyAndCount();
         return {
             data: result,
             count: total,
+            page,
+            pageSize: 10
         };
     }
-    findOne(id) {
-        return `This action returns a #${id} product`;
+    async findOne(id) {
+        const response = await this.productRepository.findOne({
+            where: {
+                id: id
+            }
+        });
+        return response;
     }
     async update(product) {
         return await this.productRepository.save(product);
     }
-    remove(id) {
-        return `This action removes a #${id} product`;
+    async remove(id) {
+        return await this.productRepository.delete({
+            id: id
+        });
     }
 };
 exports.ProductService = ProductService;

@@ -10,8 +10,10 @@ export declare class ProductController {
     }): Promise<{
         data: Product[];
         count: number;
+        page: number;
+        pageSize: number;
     }>;
-    findOne(id: string): string;
+    findOne(id: string): Promise<Product>;
     update(product: Product): Promise<Product>;
-    remove(id: string): string;
+    remove(id: string): Promise<import("typeorm").DeleteResult>;
 }

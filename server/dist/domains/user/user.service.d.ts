@@ -6,8 +6,6 @@ export declare class UserService {
     private readonly userRepository;
     constructor(userRepository: Repository<User>);
     create(createUserDto: CreateUserDto): Promise<User>;
-    findAll(): string;
-    findOne(id: number): string;
+    findOne(email: string): Promise<User>;
     update(id: number, updateUserDto: UpdateUserDto): string;
-    remove(id: number): string;
 }

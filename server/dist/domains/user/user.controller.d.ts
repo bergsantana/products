@@ -5,7 +5,8 @@ export declare class UserController {
     private readonly userService;
     constructor(userService: UserService);
     create(createUserDto: CreateUserDto): Promise<import("../../models/user/user.entity").User>;
-    findOne(id: string): string;
+    findOne(query: {
+        email: string;
+    }): Promise<import("../../models/user/user.entity").User>;
     update(id: string, updateUserDto: UpdateUserDto): string;
-    remove(id: string): string;
 }

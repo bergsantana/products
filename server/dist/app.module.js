@@ -34,6 +34,7 @@ exports.AppModule = AppModule = __decorate([
                 database: process.env.MYSQL_DATABASE,
                 entities: [category_1.Category, product_entity_1.Product, user_entity_1.User],
                 synchronize: true,
+                logging: true
             }),
             product_module_1.ProductModule,
             user_module_1.UserModule,

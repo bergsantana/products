@@ -6,11 +6,13 @@ export declare class ProductService {
     private readonly categoryRepository;
     constructor(productRepository: Repository<Product>, categoryRepository: Repository<Category>);
     create(product: Product): Promise<Product>;
-    findAll(query: string, page: number): Promise<{
+    findAll(search: string, page: number): Promise<{
         data: Product[];
         count: number;
+        page: number;
+        pageSize: number;
     }>;
-    findOne(id: number): string;
+    findOne(id: number): Promise<Product>;
     update(product: Product): Promise<Product>;
-    remove(id: number): string;
+    remove(id: number): Promise<import("typeorm").DeleteResult>;
 }

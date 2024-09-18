@@ -14,9 +14,11 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserService = void 0;
 const common_1 = require("@nestjs/common");
+const update_user_dto_1 = require("./dto/update-user.dto");
 const typeorm_1 = require("@nestjs/typeorm");
 const user_entity_1 = require("../../models/user/user.entity");
 const typeorm_2 = require("typeorm");
+const auth_guard_1 = require("../../auth/auth.guard");
 let UserService = class UserService {
     constructor(userRepository) {
         this.userRepository = userRepository;
@@ -25,20 +27,33 @@ let UserService = class UserService {
         const userToSave = this.userRepository.create(createUserDto);
         return await this.userRepository.save(userToSave);
     }
-    findAll() {
-        return `This action returns all user`;
-    }
-    findOne(id) {
-        return `This action returns a #${id} user`;
+    async findOne(email) {
+        console.log('email', email);
+        const res = await this.userRepository.findOneOrFail({
+            where: {
+                email
+            }
+        });
+        console.log('Res', res);
+        return res;
     }
     update(id, updateUserDto) {
         return `This action updates a #${id} user`;
     }
-    remove(id) {
-        return `This action removes a #${id} user`;
-    }
 };
 exports.UserService = UserService;
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", Promise)
+], UserService.prototype, "findOne", null);
+__decorate([
+    (0, common_1.UseGuards)(auth_guard_1.AuthGuard),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number, update_user_dto_1.UpdateUserDto]),
+    __metadata("design:returntype", void 0)
+], UserService.prototype, "update", null);
 exports.UserService = UserService = __decorate([
     (0, common_1.Injectable)(),
     __param(0, (0, typeorm_1.InjectRepository)(user_entity_1.User)),

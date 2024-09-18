@@ -27,7 +27,7 @@ export class ProductController {
   @UseGuards(AuthGuard)
   @Get()
   findAll(@Query() query: { search: string; page: number }) {
-    console.log(`controller params`, query.search, query.page);
+     
     return this.productService.findAll(query.search, query.page);
   }
 
