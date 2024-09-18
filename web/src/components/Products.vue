@@ -68,7 +68,7 @@ watch(
 
             <template v-slot:title>
               <p v-text="product.name"></p>
-              <img :src="product.image" alt="Product photo" />
+              <img :src="product.image"  class="h-36 mx-auto" alt="Product photo" />
             </template>
 
             <v-card-text v-text="product.description"></v-card-text>

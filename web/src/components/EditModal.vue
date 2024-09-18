@@ -1,14 +1,13 @@
 <script setup lang="ts">
 import { ref } from "vue";
-import VueDatePicker from "@vuepic/vue-datepicker";
 import "@vuepic/vue-datepicker/dist/main.css";
 import { useToast } from "vue-toast-notification";
 import { ProductService } from "../services/Products.service";
 
-defineProps<{ isCreateModalOpen: boolean }>();
+defineProps<{ isEditModalOpen: boolean }>();
 
 defineEmits<{
-  (e: "update:isCreateModalOpen", payload: boolean): void;
+  (e: "update:isEditModalOpen", payload: boolean): void;
 }>();
 
 const $toast = useToast();
@@ -51,11 +50,11 @@ const handleSubmit = async () => {
 
 <template>
   <div class="text-center pa-4">
-    <v-btn @click="$emit('update:isCreateModalOpen', true)" color="green">
+    <v-btn @click="$emit('update:isEditModalOpen', true)" color="green">
       Create
     </v-btn>
 
-    <v-dialog :model-value="isCreateModalOpen" width="auto">
+    <v-dialog :model-value="isEditModalOpen" width="auto">
       <v-card
         max-width="400"
         prepend-icon="mdi-pen-plus"

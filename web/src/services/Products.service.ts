@@ -21,7 +21,11 @@ export class ProductService {
     }
     static async create(product: Product){
         
-        const response = await api.post('product', product)
+        const response = await api.post('product', product, {
+            headers: {
+                Authorization: `Bearer ${this.beforeFetch()}`
+            }
+        })
 
         return response.data
     }
@@ -41,12 +45,20 @@ export class ProductService {
     }
 
     static async update(product: Product){
-        const response = await api.patch('/product', product)
+        const response = await api.patch('/product', product,{
+            headers: {
+                Authorization: `Bearer ${this.beforeFetch()}`
+            }
+        })
         return response.data
     }
 
     static async delete(id: number ) {
-        const response = await api.delete(`/product/${id}` )
+        const response = await api.delete(`/product/${id}`,{
+            headers: {
+                Authorization: `Bearer ${this.beforeFetch()}`
+            }
+        })
         return response.data
 
     }
