@@ -40,7 +40,6 @@ let AuthService = class AuthService {
             res[0].password = '';
             resMsg.res = res[0];
         }
-        console.log('what is happening ', res[0]);
         return this.jwtService.sign({ ...res[0] });
     }
 };

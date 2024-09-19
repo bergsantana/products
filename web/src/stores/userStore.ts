@@ -1,6 +1,6 @@
 import { defineStore } from "pinia";
 import { Login, UserData, UserService } from "../services/Auth.service";
-import { ref, watch } from "vue";
+import { ref } from "vue";
 import { useBearerToken } from "../lib/api";
 import { whenever } from "@vueuse/core";
 

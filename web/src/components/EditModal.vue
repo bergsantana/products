@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, onUpdated, ref, watch } from "vue";
-import VueDatePicker from "@vuepic/vue-datepicker";
+import {  onUpdated, ref } from "vue";
+
 import "@vuepic/vue-datepicker/dist/main.css";
 import { useToast } from "vue-toast-notification";
 import { Product, ProductService } from "../services/Products.service";
@@ -41,7 +41,7 @@ const handleSubmit = async () => {
     imageLink.value &&
     price.value
   ) {
-    const requisition = await ProductService.update({
+    await ProductService.update({
       id: id.value!,
       name: name.value,
       description: description.value,

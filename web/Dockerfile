@@ -1,22 +1,24 @@
-# --- BASE BUILD TARGET ---
 
-    FROM node:18-alpine as development
+FROM node:18-alpine as build-stage
 
-    RUN npm install -g serve
-    
-    WORKDIR /app
-    
-    COPY ./package*.json .
-    
+WORKDIR /app
 
-    
-    RUN npm install --force
-    
-    COPY . .
-    
+COPY package*.json ./
 
-    ENV NODE_ENV 'development'
+RUN npm install
 
-    COPY ./.env.development ./.env
+COPY . .
 
-    RUN npm run build-only
+RUN npm run build
+
+ENV NODE_ENV 'development'
+
+COPY ./.env ./.env
+
+FROM nginx:stable-alpine as development
+
+COPY --from=build-stage /app/dist /usr/share/nginx/html
+
+EXPOSE 80
+
+CMD ["nginx", "-g", "daemon off;"]

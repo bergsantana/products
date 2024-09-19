@@ -1,8 +1,7 @@
 <script setup lang="ts">
-import { onBeforeMount, onMounted, ref, watch } from "vue";
+import { onMounted, ref, watch } from "vue";
 import Header from "./Header.vue";
 import { Product, ProductService } from "../services/Products.service";
-import { useUserStore } from "../stores/userStore";
 import CreateModal from "./CreateModal.vue";
 import EditModal from "./EditModal.vue";
 import DeleteModal from "./DeleteModal.vue";

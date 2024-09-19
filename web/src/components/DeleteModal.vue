@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { onBeforeMount, onUpdated, ref } from "vue";
+import { onUpdated, ref } from "vue";
 import "@vuepic/vue-datepicker/dist/main.css";
 import { useToast } from "vue-toast-notification";
 import { ProductService } from "../services/Products.service";
@@ -14,7 +14,6 @@ const $toast = useToast();
 
 const isLoading = ref(false);
 
-const id = ref(0);
 const name = ref("");
 
 const closeModal = () => {
@@ -24,7 +23,7 @@ const closeModal = () => {
 const handleSubmit = async () => {
   isLoading.value = true;
   if (name.value) {
-    const requisition = await ProductService.delete(props.id);
+    await ProductService.delete(props.id);
 
     closeModal()
     $toast.success("Product successfully deleted");

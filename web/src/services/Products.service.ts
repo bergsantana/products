@@ -1,4 +1,4 @@
-import { api, useBearerToken } from "../lib/api"
+import { api } from "../lib/api"
 
 export interface Product {
     name: string

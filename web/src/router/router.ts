@@ -1,5 +1,4 @@
 import { createRouter, createWebHistory } from "vue-router";
-import App from "../App.vue";
 import Login from "../components/Login.vue";
 import Register from "../components/Register.vue";
 import NotFound from "../components/NotFound.vue";
@@ -31,6 +30,7 @@ const router = createRouter({
   routes,
 });
 
+//@ts-ignore
 router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem("token");
 

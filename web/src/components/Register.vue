@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import { UserData } from "../services/Auth.service";
-import { toast } from "vue3-toastify";
 import { useRouter } from "vue-router";
 import { useUserStore } from "../stores/userStore";
 import { useToast } from "vue-toast-notification";
