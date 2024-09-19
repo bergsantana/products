@@ -1,4 +1,7 @@
-# Para rodar este projeto usando Docker execute
+# Para rodar este projeto
+- Instale e inicialize o Docker
+- Clone esse repositório
+- Navegue para a pasta raiz e execute:
 `docker compose up --build -d`
 
 
@@ -17,6 +20,6 @@
 # Containers
 - Docker
 
-## Features
+## Feats
 - Entities relations
 - JWT Authorization 

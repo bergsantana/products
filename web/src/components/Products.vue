@@ -67,7 +67,7 @@ watch(
 </script>
 
 <template>
-  <div class="bg-white p-2 flex flex-col gap-2">
+  <div class="bg-white p-2 flex flex-col gap-2  ">
     <h1>Products Page</h1>
     <Header
       v-model:search="search"
@@ -83,7 +83,7 @@ watch(
       <v-progress-circular indeterminate></v-progress-circular>
     </div>
     <div v-else>
-      <div class="flex justify-end">
+      <div class="flex m-auto ">
         <CreateModal
           :isCreateModalOpen
           @update:isCreateModalOpen="
@@ -117,11 +117,11 @@ watch(
           "
         />
       </div>
-      <div class="flex p-2 gap-2">
-        <div v-for="(product, i) in products" :key="i" class="w-56">
+      <div class="flex flex-wrap p-0 gap-2    justify-center">
+        <div v-for="(product, i) in products" :key="i" class="w-min  h-min">
           <v-skeleton-loader v-if="rendering" type="card"></v-skeleton-loader>
           <div v-else>
-            <v-card class="bg-white border-2 rounded-md">
+            <v-card class="bg-white border-2  rounded-md w-40 h-96">
               <v-card-subtitle v-text="product.price"></v-card-subtitle>
 
               <template v-slot:title>
@@ -135,20 +135,24 @@ watch(
 
               <v-card-text v-text="product.description"></v-card-text>
 
-              <template v-slot:actions>
-                <v-btn
-                  variant="plain"
-                  size="75"
-                  text="Edit"
-                  @click="() => openEditModal(product)"
-                ></v-btn>
-                <v-btn
-                  variant="plain"
-                  color="red"
-                  size="75"
-                  text="Delete"
-                  @click="() => openDeleteModal(product.id!, product.name)"
-                ></v-btn>
+              <template v-slot:actions  > 
+                <div class="flex gap-4">
+                  <v-btn
+                    variant="plain"
+                     
+                    text="Edit"
+                    size="50"
+                    @click="() => openEditModal(product)"
+                  ></v-btn>
+                  <v-btn
+                    variant="plain"
+                    color="red"
+                    size="50"
+                    text="Delete"
+                    @click="() => openDeleteModal(product.id!, product.name)"
+                  ></v-btn>
+
+                </div>
               </template>
             </v-card>
           </div>
