@@ -1,3 +1,7 @@
+# Para rodar este projeto usando Docker execute
+`docker compose up --build -d`
+
+
 # Server
 - Node.js
 - Nest.js

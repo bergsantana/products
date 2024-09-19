@@ -7,7 +7,7 @@ import { ProductService } from "../services/Products.service";
 
 defineProps<{ isCreateModalOpen: boolean }>();
 
-defineEmits<{
+const emit = defineEmits<{
   (e: "update:isCreateModalOpen", payload: boolean): void;
 }>();
 
@@ -21,6 +21,10 @@ const price = ref(0);
 const expireDate = ref(new Date());
 const category = ref("");
 const imageLink = ref("");
+
+const closeModal = () => {
+  emit("update:isCreateModalOpen", false)
+}
 
 const handleSubmit = async () => {
   if (
@@ -39,9 +43,8 @@ const handleSubmit = async () => {
       image: imageLink.value,
     });
 
-    console.log("SUces?", requisition);
-
     $toast.success("Product successfully created");
+    emit('update:isCreateModalOpen', false)
     return;
   }
 
@@ -132,13 +135,16 @@ const handleSubmit = async () => {
           </div>
         </template>
         <template v-slot:actions>
-          <v-btn
-            :loading="isLoading"
-            class="ms-auto"
-            text="Create"
-            variant="outlined"
-            @click="handleSubmit"
-          ></v-btn>
+          <div class="flex gap-2 p-2">
+            <v-btn text="Cancel" @click="closeModal" variant="outlined"></v-btn>
+            <v-btn
+              :loading="isLoading"
+              class="ms-auto"
+              text="Create"
+              variant="outlined"
+              @click="handleSubmit"
+            ></v-btn>
+          </div>
         </template>
       </v-card>
     </v-dialog>

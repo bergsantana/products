@@ -31,7 +31,6 @@ export class AuthService {
       resMsg.res = res[0];
     }
 
-    console.log('what is happening ', res[0]);
     return this.jwtService.sign({ ...res[0] });
   }
 }

@@ -1,6 +1,5 @@
 export interface SearchProps {
     search: string,
-    page: number
 }
 
 export interface SearchEmits {

@@ -7,10 +7,14 @@ import { useUserStore } from "../stores/userStore";
 
 defineProps<SearchProps>();
 
-defineEmits<SearchEmits>();
+const emit = defineEmits<SearchEmits>();
 
 const router = useRouter()
 const userStore = useUserStore()
+
+const handleEmitSearch = (val : string) => {
+  emit("update:search", val)
+}
 
 const handleClick = async () => {
   
@@ -28,7 +32,8 @@ const handleClick = async () => {
         max-width="350"
         size=""
         label="Search products"
-        @update:modelValue="(str : string) => console.log('search ', str)"
+        :model-value="search"
+        @update:model-value="val => handleEmitSearch(val)"
       >
         <template v-slot:label>
           <span>

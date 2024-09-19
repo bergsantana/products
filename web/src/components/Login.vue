@@ -16,7 +16,7 @@ const loginData = ref<Login>({
   password: "",
 });
 
-const goToRegister = () => router.push('auth/register')
+const goToRegister = () => router.push('register')
 
 const handleSubmit = async (e: Event) => {
   e.preventDefault();
